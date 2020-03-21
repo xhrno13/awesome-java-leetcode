@@ -42,10 +42,10 @@ public class ListNode {
             System.out.println("null");
             return;
         }
-        StringBuilder str = new StringBuilder("[" + String.valueOf(listNode.val));
+        StringBuilder str = new StringBuilder("[" + listNode.val);
         ListNode p = listNode.next;
         while (p != null) {
-            str.append(",").append(String.valueOf(p.val));
+            str.append(",").append(p.val);
             p = p.next;
         }
         System.out.println(str.append("]"));
