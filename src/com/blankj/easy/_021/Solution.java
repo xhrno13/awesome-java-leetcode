@@ -7,7 +7,7 @@ import com.blankj.structure.ListNode;
  *     author: Blankj
  *     blog  : http://blankj.com
  *     time  : 2017/04/29
- *     desc  :
+ *     desc  :有序链表合并
  * </pre>
  */
 public class Solution {

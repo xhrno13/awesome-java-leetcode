@@ -8,7 +8,7 @@ import java.util.HashMap;
  *     author: Blankj
  *     blog  : http://blankj.com
  *     time  : 2017/04/21
- *     desc  :
+ *     desc  : 利用map的特性做两数之和
  * </pre>
  */
 public class Solution {

@@ -5,16 +5,22 @@ package com.blankj.easy._035;
  *     author: Blankj
  *     blog  : http://blankj.com
  *     time  : 2017/05/02
- *     desc  :
+ *     desc  : 提示已说明是有序数组时，考虑用二分
  * </pre>
  */
 public class Solution {
     public int searchInsert(int[] nums, int target) {
-        int left = 0, right = nums.length - 1, mid = (right + left) >> 1;
+        int left = 0, right = nums.length - 1;
         while (left <= right) {
-            if (target <= nums[mid]) right = mid - 1;
-            else left = mid + 1;
-            mid = (right + left) >> 1;
+            int mid = (left + right) / 2;
+            if (nums[mid] == target) {
+                return mid;
+            } else if (nums[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+
         }
         return left;
     }
