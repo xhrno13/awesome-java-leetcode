@@ -1,11 +1,6 @@
 package com.blankj.medium._049;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * <pre>
@@ -17,24 +12,22 @@ import java.util.Map;
  */
 public class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
-        if (strs == null || strs.length == 0) return Collections.emptyList();
-        List<List<String>> list = new ArrayList<>();
-        Map<String, Integer> hash = new HashMap<>();
-        int i = 0;
+        if (strs == null || strs.length == 0) {
+            return new ArrayList<>();
+        }
+        Map<String, List<String>> map = new HashMap<>();
         for (String str : strs) {
             char[] c = str.toCharArray();
             Arrays.sort(c);
-            String sortStr = String.valueOf(c);
-            if (!hash.containsKey(sortStr)) {
-                hash.put(sortStr, i++);
-                List<String> sub = new ArrayList<>();
-                sub.add(str);
-                list.add(sub);
-            } else {
-                list.get(hash.get(sortStr)).add(str);
+            String key = String.valueOf(c);
+            if (!map.containsKey(key)) {
+                map.put(key, new ArrayList<>());
             }
+            map.get(key).add(str);
+
         }
-        return list;
+
+        return new ArrayList<>(map.values());
     }
 
     public static void main(String[] args) {
