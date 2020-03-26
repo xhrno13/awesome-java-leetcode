@@ -29,7 +29,7 @@ public class Solution {
 
     public static void main(String[] args) {
         Solution solution = new Solution();
-        int[] digits = solution.plusOne(new int[]{4, 9, 9});
+        int[] digits = solution.plusOne(new int[]{9, 9, 9});
         System.out.println(Arrays.toString(digits));
     }
 }

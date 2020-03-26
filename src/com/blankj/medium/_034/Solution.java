@@ -1,4 +1,4 @@
-package com.blankj.medium._34;
+package com.blankj.medium._034;
 
 import com.blankj.structure.TreeNode;
 
@@ -21,10 +21,12 @@ public class Solution {
         if (root == null) {
             return;
         }
-        path.add(root.val);
+
         sum -= root.val;
-        if (sum == 0 && root.left == null && root.right == null)
-            res.add(new LinkedList(path));
+        path.add(root.val);
+        if (sum == 0 && root.left == null && root.right == null) {
+            res.add(new LinkedList<>(path));
+        }
         recur(root.left, sum);
         recur(root.right, sum);
         path.removeLast();
