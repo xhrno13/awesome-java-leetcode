@@ -1,5 +1,8 @@
 package com.blankj.easy._020;
 
+import java.util.HashMap;
+import java.util.Stack;
+
 /**
  * <pre>
  *     author: Blankj
@@ -9,26 +12,41 @@ package com.blankj.easy._020;
  * </pre>
  */
 public class Solution {
+
+    private HashMap<String, String> map = new HashMap<>();
+
+    public Solution() {
+        this.map.put(")", "(");
+        this.map.put("]", "[");
+        this.map.put("}", "{");
+    }
+
+
     public boolean isValid(String s) {
-        char[] stack = new char[s.length() + 1];
-        int top = 1;
-        for (char c : s.toCharArray()) {
-            if (c == '(' || c == '[' || c == '{') {
-                stack[top++] = c;
-            } else if (c == ')' && stack[--top] != '(') {
-                return false;
-            } else if (c == ']' && stack[--top] != '[') {
-                return false;
-            } else if (c == '}' && stack[--top] != '{') {
-                return false;
-            }
+        Stack<String> stack = new Stack<>();
+        if (s.length() == 0) {
+            return true;
         }
-        return top == 1;
+        for (char c : s.toCharArray()) {
+
+            if (map.containsKey(String.valueOf(c))) {
+
+                String temp = stack.empty() ? "#" : stack.pop();
+                if (!temp.equals(map.get(String.valueOf(c)))) {
+                    return false;
+                }
+            } else {
+                stack.push(String.valueOf(c));
+            }
+
+        }
+        return stack.isEmpty();
     }
 
     public static void main(String[] args) {
         Solution solution = new Solution();
-        System.out.println(solution.isValid("()[]{}({[]})"));
-        System.out.println(solution.isValid("(])]"));
+//        System.out.println(solution.isValid("()[]{}({[]})"));
+//        System.out.println(solution.isValid("(])]"));
+        System.out.println(solution.isValid("]"));
     }
 }
