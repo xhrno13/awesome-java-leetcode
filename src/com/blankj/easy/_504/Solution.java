@@ -41,19 +41,14 @@ public class Solution {
                 continue;
             }
 
-//            if (result.toString().endsWith(numbers[0])) {
-                // 如果是单位所在的位数，则去除上一个0，加上单位
-                if (digNum % 4 == 1) {
-//                    result.deleteCharAt(result.length() - 1);
-                    result.append(units[digNum - 1]);
-//                }
-            }else{
+            if (digNum % 4 == 1) {
+                result.append(units[digNum - 1]);
+            } else {
                 result.append(numbers[0]);
             }
         }
         return result.toString();
     }
-
 
 
     public static void main(String[] args) {
