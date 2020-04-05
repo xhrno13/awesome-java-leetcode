@@ -39,11 +39,13 @@ public class Solution {
      * 1.假设当前日期为D；
      * 2.如果需要获取接下来的第5个交易日，那么如果把当前时间加上5天，也就是(D + 5)；
      * 3.这个(D + 5)不一定是我们的真实答案，这5天中间有周末的同时可能还有国家规定的一些节日假期；
-     * 4.这时我们需要找出这中间假期的天数M1，然后算出(D + 5 + M1)；
-     * 5.但是从(D + 5)到(D + 5 + M1)中又有可能存在假期，所以需要再次找出假期天数M2……
-     * 最后，当(D + 5 + M1 + … + Mn)到(D + 5 + M1 + … + Mn + Mn1)之间的假期天数Mn1为零时，(D + 5 + M1 + … + Mn + Mn1)即为结果。
+     * 4.这时我们需要找出这中间假期的天数N1，然后算出(D + 5 + N1)；
+     * 5.但是从(D + 5)到(D + 5 + N1)中又有可能存在假期，所以需要再次找出假期天数N2，以此类推
+     * 最后，当(D + 5 + N1 + … + Nm)到(D + 5 + N1 + … + Nm + Nm1)之间的假期天数Mn1为零时，(D + 5 + N1 + … + Nm + Nm1)即为结果。
      */
     public String getTradeDay(Date date, int offsetDays) {
+        //todo 此处应该对date的有效性进行检查，暂时忽略吧
+
         //判断是否交易时间超过当天收盘时间
         //为真 依据offsetDays的正负性做加1 or 减1操作
         if (isNextTradeDay(date)) {
@@ -55,6 +57,7 @@ public class Solution {
         }
 
         //取绝对值当作循环条件
+        //这里需要座椅offsetDays的正负处理
         int cnt = Math.abs(offsetDays);
         Date tradingDate = date;
         while (cnt > 0) {

@@ -6,6 +6,12 @@ import java.util.concurrent.*;
 
 /**
  * Created by tyreke.xu on 2020-04-05.
+ * 说明1：题目里 "在外部资源不变的情况下" 这个我理解如果要满足尽可能的快这个要求 最好的方式是用本地cache
+ * 并用mq广播变更来做本地cache的更新 初始化用并发(CountDownLatch)去做rpc调用维护好cache
+ * 但是鉴于本题考查的是并发和线程池的使用，故不做延伸了
+ * <p>
+ * 说明2：关于线程池的核心参数的设置，这里是"拍脑袋"，具体参数的设置需要参考调用量以及rpc的响应时长来确定参数设置
+ * corePoolSize和maximumPoolSize我设置成一样是因为减少线程池对队列满再创建maximumPoolSize的额外开销
  */
 public class Solution {
 
