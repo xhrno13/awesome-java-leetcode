@@ -10,29 +10,37 @@ package com.blankj.easy._038;
  */
 public class Solution {
     public String countAndSay(int n) {
-        String str = "1";
-        while (--n > 0) {
-            int times = 1;
-            StringBuilder sb = new StringBuilder();
-            char[] chars = str.toCharArray();
-            int len = chars.length;
-            for (int j = 1; j < len; j++) {
-                if (chars[j - 1] == chars[j]) {
-                    times++;
-                } else {
-                    sb.append(times).append(chars[j - 1]);
-                    times = 1;
-                }
-            }
-            str = sb.append(times).append(chars[len - 1]).toString();
+        if (n == 1) {
+            return "1";
         }
-        return str;
+        return say(countAndSay(n - 1));
+    }
+
+    private String say(String s) {
+
+        StringBuilder sb = new StringBuilder();
+        int count = 1;
+        char num = s.charAt(0);
+        for (int i = 1; i < s.length(); ++i) {
+            char c = s.charAt(i);
+            if (c == num) {
+                count++;
+            } else {
+                sb.append(count);
+                sb.append(num);
+                count = 1;
+                num = c;
+            }
+        }
+        sb.append(count);
+        sb.append(num);
+        return sb.toString();
     }
 
     public static void main(String[] args) {
         Solution solution = new Solution();
-        for (int i = 1; i < 6; i++) {
-            System.out.println(solution.countAndSay(i));
+        for (int i = 1; i < 10; i++) {
+            System.out.println(i + ":" + solution.countAndSay(i));
         }
     }
 }
